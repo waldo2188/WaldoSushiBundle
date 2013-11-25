@@ -1,0 +1,5 @@
+waldo_sushi:
+    resource: "@WaldoSushiBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
