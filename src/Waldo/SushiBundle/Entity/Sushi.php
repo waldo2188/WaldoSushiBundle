@@ -3,6 +3,8 @@
 namespace Waldo\SushiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="Waldo\SushiBundle\EntityRepository\SushiRepository")
@@ -20,14 +22,16 @@ class Sushi
 
     /**
      * @ORM\Column(name="nom", type="string", length=50, nullable=true)
-     *
+     * @Assert\NotBlank(message="Un nom doit être défini.")
+     * 
      * @var string $nom nom du sushi
      */
     protected $nom;
 
     /**
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
-     *
+     * @Assert\NotBlank(message="Une description doit être défini.")
+     * 
      * @var string $description description du sushi
      */
     protected $description;

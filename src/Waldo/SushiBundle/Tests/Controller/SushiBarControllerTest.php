@@ -69,6 +69,35 @@ class DefaultControllerTest extends WebTestCase
         $this->assertEquals("Un text sans importance", $crawler->filter('textarea[id="waldo_sushibundle_sushitype_description"]')->text());
     }
 
+    /**
+     * Test Liste:
+     * - Code de retour de la page 200
+     * - La page contien des erreurs de validation de formulaire
+     */
+    public function testShouldNotSaveANewSushi() {
+        $client = self::createClient();
+
+        // Le contenu du CsrfToken doit être le même que le nom du type de formulaire
+        $csrfToken = $client->getContainer()->get('form.csrf_provider')->generateCsrfToken('waldo_sushibundle_sushitype');
+
+        $client->request('POST', '/sushi-bar/edit-sushi', array(
+            'waldo_sushibundle_sushitype' => array(
+                'nom' => '  ',
+                'description' => '  ',
+                '_token' => $csrfToken,
+            )
+        ));
+
+        $crawler = $client->getCrawler();
+
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertEquals("", $crawler->filter('input[id="waldo_sushibundle_sushitype_nom"]')->attr("value"));
+        $this->assertEquals("", $crawler->filter('textarea[id="waldo_sushibundle_sushitype_description"]')->text());
+
+        $this->assertContains("Un nom doit être défini", $crawler->filter('form')->text());
+        $this->assertContains("Une description doit être défini.", $crawler->filter('form')->text());
+    }
+
     
     public function testShouldThrowANotFundException() {
 

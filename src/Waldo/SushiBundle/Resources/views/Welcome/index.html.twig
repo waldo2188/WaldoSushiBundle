@@ -2,6 +2,32 @@
 
 {% block body %}
 <h1>{% trans %}Bienvenu au Sushi Bar{% endtrans %}</h1>
-<p>{% trans %}Cette page est moche, car je n'ai encore aucune idée de son contenu !{% endtrans %}</p>
-<p><a href="{{ url("_sushi_list") }}">{% trans %}Accéder à la liste des sushi{% endtrans %}</a></p>
+<p>{% trans %}Cette page va vous présenter et donner accès aux différents tests disponnible !{% endtrans %}</p>
+
+<h2>Affichage d'une liste</h2>
+<p>
+    Cette page affiche une liste de sushi.<br />
+    Elle a été conçus dans le but :
+    <ul>
+        <li>créer une suite de test fonctionnels (Waldo\SushiBundle\Tests\Controller\SushiBarControllerTest)</li>
+        <li>présenter les fonctionnalités des librairies Nelmio\Alice et fzaninotto/faker pour la génération de fausse données</li>
+        <li>l'utilisation de l'ORM Doctrine sans charger tout le Kernel</li>
+        <li>la génération d'une base de données vide de donnée</li>
+    </ul>
+    <a href="{{ url("_sushi_list") }}">{% trans %}Accéder à la liste des sushi{% endtrans %}</a>
+</p>
+
+<h2>Formulaire simple</h2>
+<p>
+    Cette page affiche un simple formulaire pour ajouter un sushi.<br />
+    Elle a été conçus dans le but :
+    <ul>
+        <li>présenter la relation entre un type de formulaire (Waldo\SushiBundle\Form\Type\SushiType) et une entité (Waldo\SushiBundle\Entity\Sushi)</li>
+        <li>présenter les tests fonctionnels réalisables pour ce genre de formulaire</li>
+        <li>utiliser des validateurs de données existants dans l'entité Sushi (@Assert\NotBlank(message="Un nom doit être défini."))</li>
+        <li>avoir une méthode de controller (Waldo\SushiBundle\Controller::editSushiAction) très épuré</li>
+    </ul>
+    <br />
+    <a href="{{ url("_sushi_edit") }}">{% trans %}Ajouter un nouveau sushi{% endtrans %}</a>
+</p>
 {% endblock %}

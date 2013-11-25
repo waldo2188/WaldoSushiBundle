@@ -3,13 +3,41 @@
 {% block body %}
 <h2>{% trans %}Edition d'un sushi{% endtrans %}</h2>
 
-{{ form_start(form) }}
+<p>Ce formulaire est une démonstration d'un formulaire on ne peut plus simple.<br />
+Le comportement attendu est le suivant :</p>
+<ol>
+    <li>Afficher un formulaire vierge</li>
+    <li>L'utilisateur saisie des informations et valide le formulaire</li>
+    <li>Le contrôleur traite les informations :
+        <ol>
+            <li>Si les données sont invalide :
+                <ul>
+                    <li>Le controlleur renvoie le formulaire avec les erreurs trouvées</li>
+                </ul>
+            </li>
+            <li>Si les données sont valide :
+                <ul>
+                    <li>Le controlleur enregistre en base de donnée le sushi</li>
+                    <li>Puis renvoie une redirection vers la page d'édition du nouveau sushi</li>
+                </ul>
+            </li>
+        </ol>
+    </li> 
+</ol>
+
+
+
+{{ form_start(form, {'action':url('_sushi_edit')}) }}
+<fieldset>
+    <legend>Un formulaire simplissime</legend>
     {{ form_errors(form) }}
 
     {{ form_row(form.nom) }}
+    
     {{ form_row(form.description) }}
 
     <button type="submit">Valider</button>
+</fieldset>
 {{ form_end(form) }}
 
 {% endblock %}
