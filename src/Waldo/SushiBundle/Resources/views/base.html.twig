@@ -2,11 +2,21 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}SushiBar{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{{ url("_welcome") }}">{% trans %}Accueil{% endtrans %}</a>
+                </li>
+                <li>
+                    <a href="{{ url("_sushi_edit") }}">{% trans %}Ajouter un nouveau sushi{% endtrans %}</a>
+                </li>
+            </ul>
+        </nav>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

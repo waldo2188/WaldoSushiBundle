@@ -1,5 +1,7 @@
 {% extends 'WaldoSushiBundle::base.html.twig' %}
 
 {% block body %}
-Hey! Welcome Everybody !
+<h1>{% trans %}Bienvenu au Sushi Bar{% endtrans %}</h1>
+<p>{% trans %}Cette page est moche, car je n'ai encore aucune idée de son contenu !{% endtrans %}</p>
+<p><a href="{{ url("_sushi_list") }}">{% trans %}Accéder à la liste des sushi{% endtrans %}</a></p>
 {% endblock %}

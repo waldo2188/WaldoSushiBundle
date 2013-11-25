@@ -6,7 +6,7 @@
     {% for sushi in sushiList %}
         <li>
             <h3>{{ sushi.nom }}</h3>
-            <span>{{ sushi.description }}</span>
+            <span>{{ sushi.description|nl2br }}</span>
         </li>
     {% endfor %}
 </ul>

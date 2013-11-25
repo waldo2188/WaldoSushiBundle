@@ -1,13 +1,15 @@
 {% extends 'WaldoSushiBundle::base.html.twig' %}
 
 {% block body %}
-<h2>{% trans %}Liste des sushis{% endtrans %}</h2>
-<ul>
-    {% for sushi in sushiList %}
-        <li>
-            <h3>{{ sushi.nom }}</h3>
-            <span>{{ sushi.description }}</span>
-        </li>
-    {% endfor %}
-</ul>
+<h2>{% trans %}Edition d'un sushi{% endtrans %}</h2>
+
+{{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    {{ form_row(form.nom) }}
+    {{ form_row(form.description) }}
+
+    <button type="submit">Valider</button>
+{{ form_end(form) }}
+
 {% endblock %}

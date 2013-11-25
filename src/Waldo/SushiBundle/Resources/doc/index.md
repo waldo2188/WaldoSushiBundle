@@ -43,7 +43,7 @@ soit :
 Tests
 -----
 
-Lorsque l'on test des objets, nous avons souvent besoin de fausse données.
+Lorsque l'on test des objets, nous avons souvent besoin de fausses données.
 Pour cela nous alons utiliser ces trois librairie : 
 
 - [doctrine/doctrine-fixtures-bundle](https://github.com/doctrine/DoctrineFixturesBundle)

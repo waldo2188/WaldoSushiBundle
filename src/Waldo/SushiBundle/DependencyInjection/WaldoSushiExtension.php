@@ -24,5 +24,13 @@ class WaldoSushiExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+        $loader->load('form.xml');
+
+        // Permet de charger une configuration particulière pour l'environnement de test depuis un fichier YAML
+        if($container->getParameter("kernel.environment") === 'test') {
+            $loaderYml = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+            $loaderYml->load("config_test.yml");
+        }
+
     }
 }

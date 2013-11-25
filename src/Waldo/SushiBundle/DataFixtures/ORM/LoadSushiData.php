@@ -24,21 +24,22 @@ class LoadSushiData implements FixtureInterface
 
         $persister->persist($objects);
 
-//        $userAdmin = new User();
-//        $userAdmin->setUsername('admin');
-//        $userAdmin->setPassword('test');
-//
-//        $manager->persist($userAdmin);
-//        $manager->flush();
     }
 
 
     private function getSushis() {
+        $nom = <<<NOM
+Menu <randomElement(\$array = array ('A','B','C','D','E','F'))><randomDigitNotNull()> <randomElement(\$array = array ('Shake Sushi','Make vegetarian','Maki Printemps Sushi','Maki Sushi','Maki Sushi Sashimi','Sashimi Moriawase '))>
+NOM;
+        $description = <<<DESCRIPTION
+<randomDigitNotNull()> <randomElement(\$array = array ('Sushi','saumon','thon','daurade','crevette'))>, <randomDigitNotNull()> <randomElement(\$array = array ('Sushi','saumon','thon','daurade','crevette'))>, <randomDigitNotNull()> <randomElement(\$array = array ('Sushi','saumon','thon','daurade','crevette'))>, <randomDigitNotNull()> <randomElement(\$array = array ('Sushi','saumon','thon','daurade','crevette'))>, <randomDigitNotNull()> <randomElement(\$array = array ('Sushi','saumon','thon','daurade','crevette'))>\n
+servis avec soupe et salade
+DESCRIPTION;
         return array(
             "Waldo\SushiBundle\Entity\Sushi" => array(
                 'sushi{1..5}' => array(
-                    'nom' => '<sentence($nbWords = 3)>',
-                    'description' => '<paragraph($nbSentences = 1)>'
+                    'nom' => $nom,
+                    'description' => $description
                 )
             )
         );

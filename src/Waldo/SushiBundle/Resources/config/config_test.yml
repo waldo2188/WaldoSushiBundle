@@ -1,0 +1,2 @@
+parameters:
+    form.csrf_provider.class: 'Waldo\SushiBundle\Test\Extension\Csrf\CsrfProvider\MockCsrfProvider'
