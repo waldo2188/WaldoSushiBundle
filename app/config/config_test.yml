@@ -14,3 +14,17 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   pdo_sqlite
+        host:     localhost
+        port:     ~
+        dbname:   sushi_test
+        user:     root
+        password: ~
+        charset:  UTF8
+        path:     %kernel.root_dir%/cache/sushiTestDatabase.db
+
