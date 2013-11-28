@@ -7,7 +7,15 @@
     <services>
 
         <service id="waldo_sushi.form.sushi_type" class="Waldo\SushiBundle\Form\Type\SushiType">
-            <tag name="form.type" alias="waldo_sushibundle_sushitype" />
+            <tag name="form.type" alias="sushi" />
+        </service>
+        
+        <service id="waldo_sushi.form.utilisateur_type" class="Waldo\SushiBundle\Form\Type\UtilisateurType">
+            <tag name="form.type" alias="utilisateur" />
+        </service>
+
+        <service id="waldo_sushi.form.utilisateur_password_type" class="Waldo\SushiBundle\Form\Type\MotDePasseType">
+            <tag name="form.type" alias="utilisateur_password" />
         </service>
 
     </services>

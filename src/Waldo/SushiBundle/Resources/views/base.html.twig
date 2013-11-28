@@ -8,14 +8,7 @@
     </head>
     <body>
         <nav>
-            <ul>
-                <li>
-                    <a href="{{ url("_welcome") }}">{% trans %}Accueil{% endtrans %}</a>
-                </li>
-                <li>
-                    <a href="{{ url("_sushi_edit") }}">{% trans %}Ajouter un nouveau sushi{% endtrans %}</a>
-                </li>
-            </ul>
+            <a href="{{ url("_welcome") }}">{% trans %}Accueil{% endtrans %}</a>
         </nav>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}

@@ -2,7 +2,7 @@
 
 {% block body %}
 <h1>{% trans %}Bienvenu au Sushi Bar{% endtrans %}</h1>
-<p>{% trans %}Cette page va vous présenter et donner accès aux différents tests disponnible !{% endtrans %}</p>
+<p>{% trans %}Cette page va vous présenter et donner accès aux différents tests disponnibles !{% endtrans %}</p>
 
 <h2>Affichage d'une liste</h2>
 <p>
@@ -24,10 +24,27 @@
     <ul>
         <li>présenter la relation entre un type de formulaire (Waldo\SushiBundle\Form\Type\SushiType) et une entité (Waldo\SushiBundle\Entity\Sushi)</li>
         <li>présenter les tests fonctionnels réalisables pour ce genre de formulaire</li>
-        <li>utiliser des validateurs de données existants dans l'entité Sushi (@Assert\NotBlank(message="Un nom doit être défini."))</li>
+        <li>utiliser des validateurs de données existants dans l'entité Sushi (@Assert\NotBlank(message="Ceci est un message d'erreur personnalisé."))</li>
         <li>avoir une méthode de controller (Waldo\SushiBundle\Controller::editSushiAction) très épuré</li>
     </ul>
     <br />
     <a href="{{ url("_sushi_edit") }}">{% trans %}Ajouter un nouveau sushi{% endtrans %}</a>
 </p>
+
+
+<h2>Multiples formulaires basé sur une entité</h2>
+<p>
+    Ces pages affichent un simple formulaire. Chacun met en oeuvre une action par rapport à la même entité (Waldo\SushiBundle\Entity\Utilisateur)<br />
+    Elles ont été conçus dans le but :
+    <ul>
+        <li>d'avoir un type de formulaire adaptable à différent moment de vie d'une entité (Ajout, modification, modification d'un champ en particulier)</li>
+        <li>mettre en place des groupes de validation, avec un sélecteur</li>
+        <li>créer un validateur personnalisé</li>
+    </ul>
+    <br />
+    <a href="{{ url("_utilisateur_edit") }}">{% trans %}Ajouter un nouvel utilisateur{% endtrans %}</a><br />
+    <a href="{{ url("_sushi_edit") }}">{% trans %}Modifier les données d'un utilisateur{% endtrans %}</a><br />
+    <a href="{{ url("_sushi_edit") }}">{% trans %}Modifier le mot de passe d'un utilisateur{% endtrans %}</a>
+</p>
+
 {% endblock %}

@@ -26,8 +26,12 @@ Le comportement attendu est le suivant :</p>
 </ol>
 
 
-
-{{ form_start(form, {'action':url('_sushi_edit')}) }}
+{#
+    Si dans l'url du formulaire on passe l'id du sushi, cela permetra à l'application
+    de se baser sur un sushi existant. Cela permet aussi de savoir que c'est uneautoescape
+    mise à jour de l'entité que lon va effectuer et non une création
+#}
+{{ form_start(form, {'action':url('_sushi_edit', {"idSushi":sushi.id|default(null)})}) }}
 <fieldset>
     <legend>Un formulaire simplissime</legend>
     {{ form_errors(form) }}

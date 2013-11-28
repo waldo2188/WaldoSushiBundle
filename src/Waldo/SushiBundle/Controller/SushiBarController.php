@@ -45,16 +45,16 @@ class SushiBarController extends Controller
             }
         }
 
-        // waldo_sushibundle_sushitype est le nom du type de formulaire Waldo\SushiBundle\Form\Type\SushiType
+        // sushi est le nom du type de formulaire Waldo\SushiBundle\Form\Type\SushiType
         // Du faite que le type de formulaire est définit comme un service, on peu l'appeler par son nom
-        $form = $this->createForm("waldo_sushibundle_sushitype", $sushi);
+        $form = $this->createForm("sushi", $sushi);
 
         if($request->isMethod("POST")) {
             $form->bind($request);
 
             if($form->isValid()) {
 
-                // Comme le waldo_sushibundle_sushitype est lié à la class \Waldo\SushiBundle\Entity\Sushi
+                // Comme le sushi est lié à la class \Waldo\SushiBundle\Entity\Sushi
                 // la méthode getData retourne une instance de Sushi setter avec les données du formulaire
                 /* @var $sushi \Waldo\SushiBundle\Entity\Sushi */
                 $sushi = $form->getData();
@@ -67,6 +67,9 @@ class SushiBarController extends Controller
 
         }
 
-        return array("form" => $form->createView());
+        return array(
+            "form" => $form->createView(),
+            "sushi" => $sushi
+            );
     }
 }

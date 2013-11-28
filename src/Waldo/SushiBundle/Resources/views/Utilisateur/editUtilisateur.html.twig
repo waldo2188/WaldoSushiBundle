@@ -1,0 +1,65 @@
+{% extends 'WaldoSushiBundle::base.html.twig' %}
+
+{% block body %}
+<h2>{% trans %}Edition d'un utilisateur{% endtrans %}</h2>
+
+{% if utilisateur %}
+<h3>Informations sur l'utilisateur</h3>
+
+<table>
+    <tr>
+        <th>id</th>
+        <td>{{ utilisateur.id|default('vide') }}</td>
+    </tr>
+    <tr>
+        <th>Username</th>
+        <td>{{ utilisateur.username|default('vide') }}</td>
+    </tr>
+    <tr>
+        <th>Password</th>
+        <td>{{ utilisateur.password|default('vide') }}</td>
+    </tr>
+    <tr>
+        <th>Salt</th>
+        <td>{{ utilisateur.salt|default('vide') }}</td>
+    </tr>
+    <tr>
+        <th>eMail</th>
+        <td>{{ utilisateur.email|default('vide') }}</td>
+    </tr>
+    <tr>
+        <th>roles</th>
+        <td>{{ utilisateur.roles|default('vide') }}</td>
+    </tr>
+    <tr>
+        <th>adresse</th>
+        <td>{{ utilisateur.adresse|default('vide') }}</td>
+    </tr>
+</table>
+{% endif %}
+
+{#
+    Si dans l'url du formulaire on passe l'id de l'utilisateur, cela permetra à
+    l'application de se baser sur un sushi existant. Cela permet aussi de savoir
+    que c'est uneautoescape mise à jour de l'entité que lon va effectuer et non
+    une création.
+#}
+{{ form_start(form, {'action':url('_utilisateur_edit', {"idUtilisateur":utilisateur.id|default(null)} ) } ) }}
+
+    {{ form_errors(form) }}
+
+    {{ form_row(form.username) }}
+
+    {% if form.password|default(false) %}
+    {{ form_row(form.password) }}
+    {% endif %}
+
+    {{ form_row(form.email) }}
+    
+    {{ form_row(form.adresse) }}
+
+    <button type="submit">Valider</button>
+
+{{ form_end(form) }}
+
+{% endblock %}

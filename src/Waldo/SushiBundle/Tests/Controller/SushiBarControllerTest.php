@@ -3,11 +3,12 @@
 namespace Waldo\SushiBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Waldo\SushiBundle\Test\MyWebTestCase;
 
 /**
  * @group fonctionnal
  */
-class DefaultControllerTest extends WebTestCase
+class SushiBarControllerTest extends MyWebTestCase
 {
 
     /**
@@ -40,18 +41,18 @@ class DefaultControllerTest extends WebTestCase
     /**
      * Test Liste:
      * - Code de retour de la page 302 (redirection après réusite de l'enregistrement)
-     * - La page de redirection est la page du formulaire + l'id de l'élément créé
-     * - La redirection même à une page renvoyant un code 200
-     * - Que le formulaire contienne bien les bonnes données
+     * - la page de redirection est la page du formulaire + l'id de l'élément créé
+     * - la redirection même à une page renvoyant un code 200
+     * - que le formulaire contienne bien les bonnes données
      */
     public function testShouldSaveANewSushi() {
         $client = self::createClient();
 
         // Le contenu du CsrfToken doit être le même que le nom du type de formulaire
-        $csrfToken = $client->getContainer()->get('form.csrf_provider')->generateCsrfToken('waldo_sushibundle_sushitype');
+        $csrfToken = $client->getContainer()->get('form.csrf_provider')->generateCsrfToken('sushi');
 
         $client->request('POST', '/sushi-bar/edit-sushi', array(
-            'waldo_sushibundle_sushitype' => array(
+            'sushi' => array(
                 'nom' => 'Menu A42',
                 'description' => 'Un text sans importance',
                 '_token' => $csrfToken,
@@ -65,8 +66,8 @@ class DefaultControllerTest extends WebTestCase
 
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertEquals("Menu A42", $crawler->filter('input[id="waldo_sushibundle_sushitype_nom"]')->attr("value"));
-        $this->assertEquals("Un text sans importance", $crawler->filter('textarea[id="waldo_sushibundle_sushitype_description"]')->text());
+        $this->assertEquals("Menu A42", $crawler->filter('input[id="sushi_nom"]')->attr("value"));
+        $this->assertEquals("Un text sans importance", $crawler->filter('textarea[id="sushi_description"]')->text());
     }
 
     /**
@@ -78,10 +79,10 @@ class DefaultControllerTest extends WebTestCase
         $client = self::createClient();
 
         // Le contenu du CsrfToken doit être le même que le nom du type de formulaire
-        $csrfToken = $client->getContainer()->get('form.csrf_provider')->generateCsrfToken('waldo_sushibundle_sushitype');
+        $csrfToken = $client->getContainer()->get('form.csrf_provider')->generateCsrfToken('sushi');
 
         $client->request('POST', '/sushi-bar/edit-sushi', array(
-            'waldo_sushibundle_sushitype' => array(
+            'sushi' => array(
                 'nom' => '  ',
                 'description' => '  ',
                 '_token' => $csrfToken,
@@ -91,8 +92,8 @@ class DefaultControllerTest extends WebTestCase
         $crawler = $client->getCrawler();
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertEquals("", $crawler->filter('input[id="waldo_sushibundle_sushitype_nom"]')->attr("value"));
-        $this->assertEquals("", $crawler->filter('textarea[id="waldo_sushibundle_sushitype_description"]')->text());
+        $this->assertEquals("", $crawler->filter('input[id="sushi_nom"]')->attr("value"));
+        $this->assertEquals("", $crawler->filter('textarea[id="sushi_description"]')->text());
 
         $this->assertContains("Un nom doit être défini", $crawler->filter('form')->text());
         $this->assertContains("Une description doit être défini.", $crawler->filter('form')->text());
@@ -122,30 +123,4 @@ class DefaultControllerTest extends WebTestCase
         );
     }
 
-
-    /**
-     * Allow to regenerate all the database
-     *
-     * @throws \Doctrine\DBAL\Schema\SchemaException
-     */
-    public static function generateSchema()
-    {
-        if(null === static::$kernel) {
-            static::$kernel = static::createKernel();
-        }
-
-        /* @var $em \Doctrine\ORM\EntityManager */
-        $em = static::$kernel->getContainer()->get("doctrine.orm.entity_manager");
-
-        // Get the metadata of the application to create the schema.
-        $metadata = $em->getMetadataFactory()->getAllMetadata();
-
-        if(!empty($metadata)) {
-            $tool = new \Doctrine\ORM\Tools\SchemaTool($em);
-            $tool->dropDatabase();
-            $tool->createSchema($metadata);
-        } else {
-            throw new \Doctrine\DBAL\Schema\SchemaException('No Metadata Classes to process.');
-        }
-    }
 }

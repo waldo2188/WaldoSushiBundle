@@ -13,13 +13,9 @@ Faire `Add Folder` puis rechercher le chemin de PhoUnit, soit `/usr/share/php/PH
 
 
 
-
-
-
-
 Le bundle est autonome
 ----------------------
-Le bundle est un dossier respectant une architecture. Celui-ci doit être autonome, c.â.d qu'il peut être copier/coller et fonctionner (après configuration).
+Le bundle est un dossier respectant une architecture. Celui-ci doit être autonome, c.â.d qu'il peut être copier/coller et fonctionner (après un peu configuration).
 
 Le javascript/css du bundle doit être dans le répertoire `MonBundle\Resources\Public\[js|css]`
 
@@ -44,7 +40,7 @@ Tests
 -----
 
 Lorsque l'on test des objets, nous avons souvent besoin de fausses données.
-Pour cela nous alons utiliser ces trois librairie : 
+Pour cela nous alons utiliser ces trois librairies : 
 
 - [doctrine/doctrine-fixtures-bundle](https://github.com/doctrine/DoctrineFixturesBundle)
 - [fzaninotto/faker](https://github.com/fzaninotto/Faker)

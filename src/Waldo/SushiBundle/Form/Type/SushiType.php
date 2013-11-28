@@ -40,7 +40,7 @@ class SushiType extends AbstractType
 
     public function getName()
     {
-        return 'waldo_sushibundle_sushitype';
+        return 'sushi';
     }
 
 }
