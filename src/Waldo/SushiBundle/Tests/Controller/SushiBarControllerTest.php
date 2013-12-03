@@ -2,7 +2,6 @@
 
 namespace Waldo\SushiBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Waldo\SushiBundle\Test\MyWebTestCase;
 
 /**

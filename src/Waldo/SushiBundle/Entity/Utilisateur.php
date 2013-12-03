@@ -5,6 +5,7 @@ namespace Waldo\SushiBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Waldo\SushiBundle\Validator\Constraints as SushiConstrains;
 
 /**
  * Ici nous implementons UserInterface et \Serializable conformément à la
@@ -29,6 +30,7 @@ class Utilisateur implements UserInterface, \Serializable
     /**
      * @ORM\Column(name="username", type="string", length=50, nullable=false, unique=true)
      * @Assert\NotBlank(message="Un nom d'utilisateur doit être défini.")
+     * 
      * @Assert\Length(
      *      min = "6",
      *      minMessage = "Votre nom d'utilisateur doit être d'au moins {{ limit }} characteres."
@@ -38,7 +40,8 @@ class Utilisateur implements UserInterface, \Serializable
      *     match=true,
      *     message="Votre nom d'utilisateur peut uniquement comporter des caractères Alphanumérique, '.' et '-'"
      * )
-     *
+     * 
+     * 
      * @var string $username login de l'utilisateur
      */
     protected $username;
@@ -47,6 +50,9 @@ class Utilisateur implements UserInterface, \Serializable
      * @ORM\Column(name="password", type="string", length=255, nullable=false)
      * @Assert\NotBlank(
      *      message="Un mot de passe doit être défini.",
+     *      groups={"registration"}
+     * )
+     * @SushiConstrains\Password(
      *      groups={"registration"}
      * )
      * @Assert\Length(

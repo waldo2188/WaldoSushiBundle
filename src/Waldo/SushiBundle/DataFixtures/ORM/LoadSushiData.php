@@ -4,7 +4,6 @@ namespace Waldo\SushiBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Waldo\SushiBundle\Entity\Sushi;
 
 
 /**
@@ -18,6 +17,10 @@ class LoadSushiData implements FixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+        // Chargement d'une liste de sushis grâce à Faker et Alice
+        // Facker fournie de fausse données (nom, prénom, email, téléphone, ...)
+        // Alice permet de scripter un peu plus Faker et de travailler avec des
+        // objet
         $loader = new \Nelmio\Alice\Loader\Base();
         $objects = $loader->load($this->getSushis());
         $persister = new \Nelmio\Alice\ORM\Doctrine($manager);

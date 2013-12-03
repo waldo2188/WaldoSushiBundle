@@ -1,0 +1,27 @@
+{% extends 'WaldoSushiBundle::base.html.twig' %}
+
+{% block body %}
+<h2>{% trans %}Changement du mot de passe d'un utilisateur{% endtrans %}</h2>
+
+<p>Dans l'action que représente cette page <em>WaldoSushiBundle:UtilisateurController:editMotDePasseAction</em>, nous mettons en avant qu'avec un code basique
+et quasiment identique à <em>WaldoSushiBundle:UtilisateurController:editUtilisateurAction</em> nous pouvons <strong>changer une partie</strong> des
+données d'une entité sans avoir de traitement complexe à réaliser.</p>
+
+<div>
+{% if utilisateur %}
+{% include 'WaldoSushiBundle:Utilisateur:informationGeneralUtilisateur.html.twig' %}
+{% endif %}
+</div>
+
+
+{{ form_start(form, {'action':url('_utilisateur_password_edit', {"idUtilisateur":utilisateur.id} ) } ) }}
+
+    {{ form_errors(form) }}
+
+    {{ form_row(form.password) }}
+
+    <button type="submit">Valider</button>
+
+{{ form_end(form) }}
+
+{% endblock %}

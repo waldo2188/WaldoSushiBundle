@@ -1,5 +1,7 @@
 <?php
 
+namespace Waldo\SushiBundle\Tests\Service;
+
 /**
  * Class de test du service UtilisateurService
  *
@@ -14,7 +16,7 @@ class UtilisateurServiceTest extends \PHPUnit_Framework_TestCase
      */
     public function testSouldGeneratePassword()
     {
-        $utilisateur = new Waldo\SushiBundle\Entity\Utilisateur();
+        $utilisateur = new \Waldo\SushiBundle\Entity\Utilisateur();
         $utilisateur->setUsername("arthur-dent")
                 ->setEmail("a@a.fr")
                 ->setPassword("aaaaa.1A");
@@ -41,7 +43,7 @@ class UtilisateurServiceTest extends \PHPUnit_Framework_TestCase
                 ->will($this->returnValue($encodeur))
         ;
 
-        $utilisateurService = new Waldo\SushiBundle\Service\UtilisateurService($em, $encodeurFactory);
+        $utilisateurService = new \Waldo\SushiBundle\Service\UtilisateurService($em, $encodeurFactory);
         $utilisateurAfterTraitement = $utilisateurService->manageUtilisateur($utilisateur);
 
         $this->assertEquals("NewHasedPassword", $utilisateurAfterTraitement->getPassword());
@@ -54,7 +56,7 @@ class UtilisateurServiceTest extends \PHPUnit_Framework_TestCase
      */
     public function testSouldNotGeneratePassword()
     {
-        $utilisateur = new Waldo\SushiBundle\Entity\Utilisateur();
+        $utilisateur = new \Waldo\SushiBundle\Entity\Utilisateur();
         $utilisateur->setId(42)
                 ->setUsername("arthur-dent")
                 ->setEmail("a@a.fr")
@@ -78,7 +80,7 @@ class UtilisateurServiceTest extends \PHPUnit_Framework_TestCase
         $encodeurFactory->expects($this->never())
                 ->method("getEncoder");
 
-        $utilisateurService = new Waldo\SushiBundle\Service\UtilisateurService($em, $encodeurFactory);
+        $utilisateurService = new \Waldo\SushiBundle\Service\UtilisateurService($em, $encodeurFactory);
         $utilisateurAfterTraitement = $utilisateurService->manageUtilisateur($utilisateur);
 
         $this->assertEquals("aaaaa.1A", $utilisateurAfterTraitement->getPassword());

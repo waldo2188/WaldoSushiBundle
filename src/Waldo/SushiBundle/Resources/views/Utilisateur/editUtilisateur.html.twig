@@ -3,40 +3,11 @@
 {% block body %}
 <h2>{% trans %}Edition d'un utilisateur{% endtrans %}</h2>
 
+<div>
 {% if utilisateur %}
-<h3>Informations sur l'utilisateur</h3>
-
-<table>
-    <tr>
-        <th>id</th>
-        <td>{{ utilisateur.id|default('vide') }}</td>
-    </tr>
-    <tr>
-        <th>Username</th>
-        <td>{{ utilisateur.username|default('vide') }}</td>
-    </tr>
-    <tr>
-        <th>Password</th>
-        <td>{{ utilisateur.password|default('vide') }}</td>
-    </tr>
-    <tr>
-        <th>Salt</th>
-        <td>{{ utilisateur.salt|default('vide') }}</td>
-    </tr>
-    <tr>
-        <th>eMail</th>
-        <td>{{ utilisateur.email|default('vide') }}</td>
-    </tr>
-    <tr>
-        <th>roles</th>
-        <td>{{ utilisateur.roles|default('vide') }}</td>
-    </tr>
-    <tr>
-        <th>adresse</th>
-        <td>{{ utilisateur.adresse|default('vide') }}</td>
-    </tr>
-</table>
+{% include 'WaldoSushiBundle:Utilisateur:informationGeneralUtilisateur.html.twig' %}
 {% endif %}
+</div>
 
 {#
     Si dans l'url du formulaire on passe l'id de l'utilisateur, cela permetra à

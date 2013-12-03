@@ -38,12 +38,12 @@
     Elles ont été conçus dans le but :
     <ul>
         <li>d'avoir un type de formulaire adaptable à différent moment de vie d'une entité (Ajout, modification, modification d'un champ en particulier)</li>
-        <li>mettre en place des groupes de validation, avec un sélecteur</li>
-        <li>créer un validateur personnalisé</li>
+        <li>utiliser un groupes de validation</li>
+        <li>créer un validateur personnalisé (Waldo\SushiBundle\Validator\Constraints\PasswordValidator)</li>
     </ul>
     <br />
     <a href="{{ url("_utilisateur_edit") }}">{% trans %}Ajouter un nouvel utilisateur{% endtrans %}</a><br />
-    <a href="{{ url("_sushi_edit") }}">{% trans %}Modifier les données d'un utilisateur{% endtrans %}</a><br />
+    <a href="{{ url("_utilisateur_show") }}">{% trans %}Modifier les données d'un utilisateur{% endtrans %}</a><br />
     <a href="{{ url("_sushi_edit") }}">{% trans %}Modifier le mot de passe d'un utilisateur{% endtrans %}</a>
 </p>
 

@@ -14,7 +14,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class SushiBarController extends Controller
 {
     /**
-     * Affiche la liste des sushi disponible
+     * Affiche la liste des sushis disponibles
      *
      * @Route("/", name="_sushi_list")
      * @Template()
@@ -45,8 +45,9 @@ class SushiBarController extends Controller
             }
         }
 
-        // sushi est le nom du type de formulaire Waldo\SushiBundle\Form\Type\SushiType
-        // Du faite que le type de formulaire est définit comme un service, on peu l'appeler par son nom
+        // "sushi" est le nom du type de formulaire Waldo\SushiBundle\Form\Type\SushiType
+        // Du faite que le type de formulaire est définit comme un service, on peu
+        // l'appeler par son nom
         $form = $this->createForm("sushi", $sushi);
 
         if($request->isMethod("POST")) {

@@ -1,0 +1,27 @@
+{% extends 'WaldoSushiBundle::base.html.twig' %}
+
+{% block body %}
+<h2>{% trans %}Liste des utilisateurs{% endtrans %}</h2>
+
+<a href="{{ url("_utilisateur_edit") }}">Ajouter un utilisateur</a><br />
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+    {% for utilisateur in utilisateurList %}
+    <tr>
+        <td>{{ utilisateur.username }}</td>
+        <td>{{ utilisateur.email }}</td>
+        <td>
+            <a href="{{ url("_utilisateur_password_edit", {"idUtilisateur":utilisateur.id}) }}">Changer mot de passe</a>
+            &nbsp;|&nbsp;
+            <a href="{{ url("_utilisateur_edit", {"idUtilisateur":utilisateur.id}) }}">Modifier l'utilisateur</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+{% endblock %}
