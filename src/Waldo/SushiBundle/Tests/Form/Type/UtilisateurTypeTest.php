@@ -14,7 +14,7 @@ class UtilisateurTypeTest extends TypeTestCase
 {
 
     /**
-     * Preload deu type MotDePasseType
+     * Preload de type MotDePasseType
      * @return type
      */
     protected function getExtensions()
